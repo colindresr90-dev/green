@@ -674,7 +674,7 @@ export function HomePage() {
                 <Link to="/materiales"><Button variant="heroSecondary" size="xl">Quiero reciclar</Button></Link>
               </div>
             </div>
-            <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:grid sm:grid-cols-3 lg:self-end lg:mx-0 lg:px-0 lg:pb-0">
+            <div className="flex overflow-x-auto gap-4 py-6 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:grid sm:grid-cols-3 lg:self-end lg:mx-0 lg:px-0 lg:py-0">
               {pivStats.map((item) => (
                 <div key={item.label} data-hero-stat className="snap-center shrink-0 w-[260px] sm:w-auto rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md">
                   <p className="text-4xl font-bold tracking-tight text-[var(--brand-lime)] md:text-5xl">

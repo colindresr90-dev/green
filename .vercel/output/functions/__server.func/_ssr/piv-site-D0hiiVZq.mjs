@@ -863,7 +863,7 @@ function HomePage() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/materiales", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "heroSecondary", size: "xl", children: "Quiero reciclar" }) })
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex overflow-x-auto gap-4 pb-4 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:grid sm:grid-cols-3 lg:self-end lg:mx-0 lg:px-0 lg:pb-0", children: pivStats.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-hero-stat": true, className: "snap-center shrink-0 w-[260px] sm:w-auto rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex overflow-x-auto gap-4 py-6 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:grid sm:grid-cols-3 lg:self-end lg:mx-0 lg:px-0 lg:py-0", children: pivStats.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-hero-stat": true, className: "snap-center shrink-0 w-[260px] sm:w-auto rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-4xl font-bold tracking-tight text-[var(--brand-lime)] md:text-5xl", children: [
             item.prefix,
             formatMetric(item.value)
