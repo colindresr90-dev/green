@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ArrowUpRight, Clock3, MapPinned, MessageCircle, MoveRight, Phone, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Clock3, MapPinned, MessageCircle, MoveRight, Phone, ShieldCheck, Menu, X } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -157,6 +157,7 @@ function PageShell({ children }: { children: ReactNode }) {
 function SiteHeader() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -164,6 +165,17 @@ function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <header
@@ -218,10 +230,66 @@ function SiteHeader() {
           <a href={whatsappHref} target="_blank" rel="noreferrer" className="hidden md:block">
             <Button variant="hero" size="sm">Cotizar</Button>
           </a>
-          <Link to="/contacto" className="lg:hidden">
+          <Link to="/contacto" className="hidden sm:block lg:hidden">
             <Button variant="hero" size="sm">Contacto</Button>
           </Link>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={cn(
+              "p-2 rounded-full lg:hidden z-50 transition-colors focus-visible:outline-none",
+              scrolled
+                ? "text-[var(--brand-navy)] hover:bg-[var(--brand-sky)]/50"
+                : "text-white hover:bg-white/15 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]",
+            )}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 bg-[var(--brand-navy)]/95 backdrop-blur-xl flex flex-col justify-center px-8 transition-all duration-300 ease-in-out lg:hidden",
+          menuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
+        )}
+      >
+        <div className="absolute inset-0 -z-10 opacity-30" style={{ background: "radial-gradient(circle at 10% 10%, var(--brand-lime) 0%, transparent 45%), radial-gradient(circle at 90% 90%, var(--brand-sky) 0%, transparent 45%)" }} />
+
+        <nav className="flex flex-col gap-6 text-center">
+          {navigation.map((item) => {
+            const isActive = pathname === item.to;
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "text-2xl font-bold uppercase tracking-[0.16em] py-3 transition-colors",
+                  isActive
+                    ? "text-[var(--brand-lime)]"
+                    : "text-white hover:text-[var(--brand-lime)]",
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+          <div className="mt-8 flex flex-col gap-4">
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Button variant="hero" size="xl" className="w-full justify-center text-lg">
+                Cotizar por WhatsApp
+              </Button>
+            </a>
+          </div>
+        </nav>
       </div>
     </header>
   );
@@ -584,7 +652,7 @@ export function HomePage() {
           <img
             src={heroAsset.url}
             alt="Operación real de Parque Industrial Verde dentro de una planta de reciclaje"
-            className="h-full w-full object-cover object-[center_40%]"
+            className="h-full w-full object-cover object-[70%_40%] md:object-[center_40%]"
             loading="eager"
           />
           <div className="hero-overlay" />
@@ -598,7 +666,7 @@ export function HomePage() {
           <div className="grid w-full gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div className="space-y-6">
               <p data-hero-kicker className="eyebrow eyebrow--light">Economía circular con escala industrial</p>
-              <h1 data-hero-title className="max-w-4xl text-balance text-5xl font-semibold tracking-tight text-white md:text-7xl lg:text-[5.2rem]">
+              <h1 data-hero-title className="max-w-4xl text-balance text-4xl sm:text-5xl font-semibold tracking-tight text-white md:text-7xl lg:text-[5.2rem]">
                 Transformamos residuos en oportunidades.
               </h1>
               <div data-hero-actions className="flex flex-wrap gap-3 pt-2">
@@ -606,9 +674,9 @@ export function HomePage() {
                 <Link to="/materiales"><Button variant="heroSecondary" size="xl">Quiero reciclar</Button></Link>
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-3 lg:self-end">
+            <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:grid sm:grid-cols-3 lg:self-end lg:mx-0 lg:px-0 lg:pb-0">
               {pivStats.map((item) => (
-                <div key={item.label} data-hero-stat className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md">
+                <div key={item.label} data-hero-stat className="snap-center shrink-0 w-[260px] sm:w-auto rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md">
                   <p className="text-4xl font-bold tracking-tight text-[var(--brand-lime)] md:text-5xl">
                     {item.prefix}{formatMetric(item.value)}
                   </p>

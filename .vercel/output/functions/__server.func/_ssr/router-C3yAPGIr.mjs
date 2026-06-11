@@ -15,7 +15,7 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-const appCss = "/assets/styles-CbOCVXgw.css";
+const appCss = "/assets/styles-CUwkYMGh.css";
 function reportLovableError(error, context = {}) {
   if (typeof window === "undefined") return;
   window.__lovableEvents?.captureException?.(
@@ -212,7 +212,7 @@ function RootComponent() {
   const { queryClient } = Route$8.useRouteContext();
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) });
 }
-const $$splitComponentImporter$5 = () => import("./sobre-nosotros-ZZU_MceJ.mjs");
+const $$splitComponentImporter$5 = () => import("./sobre-nosotros-CKAbRFHB.mjs");
 const Route$7 = createFileRoute("/sobre-nosotros")({
   head: () => buildMeta("Sobre Parque Industrial Verde — Historia, visión e infraestructura", "Más de 23 años construyendo liderazgo, trazabilidad e infraestructura para la economía circular en El Salvador.", "/sobre-nosotros"),
   component: lazyRouteComponent($$splitComponentImporter$5, "component")
@@ -255,12 +255,12 @@ const Route$6 = createFileRoute("/sitemap.xml")({
     }
   }
 });
-const $$splitComponentImporter$4 = () => import("./servicios-BR-BdHoS.mjs");
+const $$splitComponentImporter$4 = () => import("./servicios-CVLtBMSa.mjs");
 const Route$5 = createFileRoute("/servicios")({
   head: () => buildMeta("Servicios ambientales — Recolección, trazabilidad y destrucción certificada", "Gestión de residuos, recuperación de materiales, certificación y trazabilidad para empresas, industrias y corporaciones.", "/servicios"),
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./rse-CI49e67Q.mjs");
+const $$splitComponentImporter$3 = () => import("./rse-DjphRvEx.mjs");
 const Route$4 = createFileRoute("/rse")({
   head: () => buildMeta("RSE y educación ambiental — Impacto social de Parque Industrial Verde", "Campañas, educación ambiental y trabajo con comunidades para ampliar el impacto de la economía circular en El Salvador.", "/rse"),
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
@@ -277,12 +277,12 @@ const Route$3 = createFileRoute("/robots.txt")({
     }
   }
 });
-const $$splitComponentImporter$2 = () => import("./materiales-3frW-vWm.mjs");
+const $$splitComponentImporter$2 = () => import("./materiales-DLE16xBv.mjs");
 const Route$2 = createFileRoute("/materiales")({
   head: () => buildMeta("Materiales reciclables y RAEE — Qué recibe Parque Industrial Verde", "Consulta materiales aceptados, categorías, preparación y opciones de disposición responsable por cobro.", "/materiales"),
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./contacto-Lx8Nn6Ja.mjs");
+const $$splitComponentImporter$1 = () => import("./contacto-C-1Xci73.mjs");
 const Route$1 = createFileRoute("/contacto")({
   head: () => ({
     ...buildMeta("Contacto Parque Industrial Verde — Solicita recolección y atención comercial", "Habla con Parque Industrial Verde, solicita recolección, consulta ubicaciones y agenda soluciones ambientales para tu operación.", "/contacto"),
@@ -296,7 +296,7 @@ const Route$1 = createFileRoute("/contacto")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-const $$splitComponentImporter = () => import("./index-BaOKAEjJ.mjs");
+const $$splitComponentImporter = () => import("./index-Bb3X9ZBV.mjs");
 const Route = createFileRoute("/")({
   head: () => buildMeta("Parque Industrial Verde — Economía circular con escala industrial", "Infraestructura, trazabilidad y soluciones ambientales para empresas y comunidades en El Salvador.", "/"),
   component: lazyRouteComponent($$splitComponentImporter, "component")

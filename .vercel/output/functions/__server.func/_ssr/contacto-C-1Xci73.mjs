@@ -1,4 +1,4 @@
-import { H as HomePage } from "./piv-site-CTfi9J0C.mjs";
+import { C as ContactPage } from "./piv-site-BvI8lFMt.mjs";
 import "../_libs/react.mjs";
 import "../_libs/tanstack__react-router.mjs";
 import "../_libs/tanstack__router-core.mjs";
@@ -32,7 +32,7 @@ import "../_libs/radix-ui__react-presence.mjs";
 import "../_libs/radix-ui__react-id.mjs";
 import "../_libs/radix-ui__react-direction.mjs";
 import "../_libs/lucide-react.mjs";
-const SplitComponent = HomePage;
+const SplitComponent = ContactPage;
 export {
   SplitComponent as component
 };

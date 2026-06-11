@@ -6,7 +6,7 @@ import { t as twMerge } from "../_libs/tailwind-merge.mjs";
 import { S as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { c as cva } from "../_libs/class-variance-authority.mjs";
 import { R as Root2, I as Item, H as Header, T as Trigger2, C as Content2 } from "../_libs/radix-ui__react-accordion.mjs";
-import { S as ShieldCheck, A as ArrowUpRight, M as MoveRight, a as MapPinned, C as Clock3, P as Phone, b as MessageCircle, c as ChevronDown } from "../_libs/lucide-react.mjs";
+import { S as ShieldCheck, A as ArrowUpRight, M as MoveRight, a as MapPinned, C as Clock3, P as Phone, X, b as Menu, c as MessageCircle, d as ChevronDown } from "../_libs/lucide-react.mjs";
 const url$a = "https://valor-circular-lab.lovable.app/__l5e/assets-v1/8893a47e-cc48-4767-b64a-dc7633117efe/piv-hero-v3.png";
 const heroAsset = {
   url: url$a
@@ -466,60 +466,126 @@ function PageShell({ children }) {
 function SiteHeader() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [scrolled, setScrolled] = reactExports.useState(false);
+  const [menuOpen, setMenuOpen] = reactExports.useState(false);
   reactExports.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+  reactExports.useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "header",
     {
       className: cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled ? "py-2" : "py-4"
       ),
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto flex w-[min(1280px,calc(100%-2rem))] items-center justify-between gap-4 rounded-2xl px-3 py-2 md:px-5 md:py-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto flex w-[min(1280px,calc(100%-2rem))] items-center justify-between gap-4 rounded-2xl px-3 py-2 md:px-5 md:py-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: cn(
+                "absolute inset-0 -z-10 rounded-2xl transition-all duration-500",
+                scrolled ? "bg-white/80 backdrop-blur-xl shadow-[var(--shadow-elevated)] border border-white/40" : "bg-transparent"
+              )
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/", className: "shrink-0 -my-8 md:-my-10 lg:-my-12", "aria-label": "Parque Industrial Verde, ir al inicio", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "img",
+            {
+              src: logoAsset.url,
+              alt: "Parque Industrial Verde",
+              className: cn(
+                "h-28 w-auto object-contain transition-all duration-500 md:h-36 lg:h-44",
+                scrolled ? "" : "drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]"
+              )
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "hidden items-center gap-1 lg:flex", children: navigation.map((item) => {
+            const isActive = pathname === item.to;
+            return /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Link,
+              {
+                to: item.to,
+                className: cn(
+                  "relative rounded-full px-3.5 py-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] transition-colors",
+                  scrolled ? isActive ? "bg-[var(--brand-navy)] text-white" : "text-[var(--brand-navy)] hover:bg-[var(--brand-sky)]/50" : isActive ? "bg-[var(--brand-lime)] text-[var(--brand-ink)]" : "text-white hover:bg-white/15 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]"
+                ),
+                children: item.label
+              },
+              item.to
+            );
+          }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: whatsappHref, target: "_blank", rel: "noreferrer", className: "hidden md:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "hero", size: "sm", children: "Cotizar" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/contacto", className: "hidden sm:block lg:hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "hero", size: "sm", children: "Contacto" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: () => setMenuOpen(!menuOpen),
+                className: cn(
+                  "p-2 rounded-full lg:hidden z-50 transition-colors focus-visible:outline-none",
+                  scrolled ? "text-[var(--brand-navy)] hover:bg-[var(--brand-sky)]/50" : "text-white hover:bg-white/15 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]"
+                ),
+                "aria-label": "Toggle menu",
+                children: menuOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-6 w-6" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "h-6 w-6" })
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "div",
           {
             className: cn(
-              "absolute inset-0 -z-10 rounded-2xl transition-all duration-500",
-              scrolled ? "bg-white/80 backdrop-blur-xl shadow-[var(--shadow-elevated)] border border-white/40" : "bg-transparent"
-            )
+              "fixed inset-0 z-40 bg-[var(--brand-navy)]/95 backdrop-blur-xl flex flex-col justify-center px-8 transition-all duration-300 ease-in-out lg:hidden",
+              menuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
+            ),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 -z-10 opacity-30", style: { background: "radial-gradient(circle at 10% 10%, var(--brand-lime) 0%, transparent 45%), radial-gradient(circle at 90% 90%, var(--brand-sky) 0%, transparent 45%)" } }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "flex flex-col gap-6 text-center", children: [
+                navigation.map((item) => {
+                  const isActive = pathname === item.to;
+                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Link,
+                    {
+                      to: item.to,
+                      onClick: () => setMenuOpen(false),
+                      className: cn(
+                        "text-2xl font-bold uppercase tracking-[0.16em] py-3 transition-colors",
+                        isActive ? "text-[var(--brand-lime)]" : "text-white hover:text-[var(--brand-lime)]"
+                      ),
+                      children: item.label
+                    },
+                    item.to
+                  );
+                }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-8 flex flex-col gap-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "a",
+                  {
+                    href: whatsappHref,
+                    target: "_blank",
+                    rel: "noreferrer",
+                    className: "w-full",
+                    onClick: () => setMenuOpen(false),
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "hero", size: "xl", className: "w-full justify-center text-lg", children: "Cotizar por WhatsApp" })
+                  }
+                ) })
+              ] })
+            ]
           }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/", className: "shrink-0 -my-8 md:-my-10 lg:-my-12", "aria-label": "Parque Industrial Verde, ir al inicio", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "img",
-          {
-            src: logoAsset.url,
-            alt: "Parque Industrial Verde",
-            className: cn(
-              "h-28 w-auto object-contain transition-all duration-500 md:h-36 lg:h-44",
-              scrolled ? "" : "drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]"
-            )
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "hidden items-center gap-1 lg:flex", children: navigation.map((item) => {
-          const isActive = pathname === item.to;
-          return /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Link,
-            {
-              to: item.to,
-              className: cn(
-                "relative rounded-full px-3.5 py-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] transition-colors",
-                scrolled ? isActive ? "bg-[var(--brand-navy)] text-white" : "text-[var(--brand-navy)] hover:bg-[var(--brand-sky)]/50" : isActive ? "bg-[var(--brand-lime)] text-[var(--brand-ink)]" : "text-white hover:bg-white/15 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]"
-              ),
-              children: item.label
-            },
-            item.to
-          );
-        }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: whatsappHref, target: "_blank", rel: "noreferrer", className: "hidden md:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "hero", size: "sm", children: "Cotizar" }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/contacto", className: "lg:hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "hero", size: "sm", children: "Contacto" }) })
-        ] })
-      ] })
+        )
+      ]
     }
   );
 }
@@ -774,7 +840,7 @@ function HomePage() {
           {
             src: heroAsset.url,
             alt: "Operación real de Parque Industrial Verde dentro de una planta de reciclaje",
-            className: "h-full w-full object-cover object-[center_40%]",
+            className: "h-full w-full object-cover object-[70%_40%] md:object-[center_40%]",
             loading: "eager"
           }
         ),
@@ -791,13 +857,13 @@ function HomePage() {
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative mx-auto flex min-h-screen w-[min(1280px,calc(100%-2rem))] items-end pb-12 pt-32 md:pb-20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid w-full gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-hero-kicker": true, className: "eyebrow eyebrow--light", children: "Economía circular con escala industrial" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { "data-hero-title": true, className: "max-w-4xl text-balance text-5xl font-semibold tracking-tight text-white md:text-7xl lg:text-[5.2rem]", children: "Transformamos residuos en oportunidades." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { "data-hero-title": true, className: "max-w-4xl text-balance text-4xl sm:text-5xl font-semibold tracking-tight text-white md:text-7xl lg:text-[5.2rem]", children: "Transformamos residuos en oportunidades." }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-hero-actions": true, className: "flex flex-wrap gap-3 pt-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: whatsappHref, target: "_blank", rel: "noreferrer", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "hero", size: "xl", children: "Cotizar" }) }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/materiales", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "heroSecondary", size: "xl", children: "Quiero reciclar" }) })
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid gap-4 sm:grid-cols-3 lg:self-end", children: pivStats.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-hero-stat": true, className: "rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex overflow-x-auto gap-4 pb-4 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:grid sm:grid-cols-3 lg:self-end lg:mx-0 lg:px-0 lg:pb-0", children: pivStats.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-hero-stat": true, className: "snap-center shrink-0 w-[260px] sm:w-auto rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-4xl font-bold tracking-tight text-[var(--brand-lime)] md:text-5xl", children: [
             item.prefix,
             formatMetric(item.value)
